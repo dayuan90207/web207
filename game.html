@@ -1,0 +1,92 @@
+<!DOCTYPE html> 
+ <html lang="en"> 
+ <head> 
+     <meta charset="utf-8"> 
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"> 
+     <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+     <title>大元資料庫</title>    
+	 <link rel="stylesheet" href="game.css"> 
+  
+</head> 
+ <body background="bgg.jpg"> 
+     <div id="app"> 
+         <div class="main"> 
+             <div class="v-form"> 
+                 <input type="text" class="v-input" placeholder="請輸入品名" name="username" v-model="username"> 
+                <input type="text" class="v-input" placeholder="請輸入平台" name="form" v-model="form"> 
+                 <input type="text" class="v-input" placeholder="請輸入價錢" name="price" v-model="price"> 
+                <button type="text" class="v-btn" @click="submit">提交</button> 
+            </div> 
+             <table class="table"> 
+                 <thead> 
+                     <th>編號</th> 
+                     <th>品名</th> 
+                     <th>平台</th> 
+                     <th>價錢</th> 
+                     <th>功能</th> 
+                </thead> 
+                 <tr v-for="(item,i) in dbData" :key="item.id"> 
+                    <td v-html="i+1"></td> 
+                     <td v-html="item.username"></td> 
+                     <td v-html="item.form"></td> 
+                     <td v-html="item.price"></td> 
+                     <td> 
+                         <button class="edit" @click="edit(i)">編輯</button> 
+                        <button class="del" @click="deleteOneData(item.id)">刪除</button> 
+                    </td> 
+                 </tr> 
+             </table> 
+         </div> 
+     </div> 
+     <script src="vue.min.js"></script> 
+     <script src="game.js"></script> 
+ 
+ 
+     <script> 
+         var vm = new Vue({ 
+             el: '#app', 
+             data: { 
+                 edit_id: 0, 
+                 username: '', 
+                 form: '', 
+                 price: '', 
+                 dbData: [] 
+             }, 
+             mounted: function(){ 
+                 openDB(); 
+                 // indexedDB.deleteDatabase('usersDB'); 
+             }, 
+             methods: { 
+                 submit: function(){ 
+                     if(this.username && this.form && this.price){ 
+                         var param = { 
+                             username: this.username, 
+                             form: this.form, 
+                             price: this.price 
+                        } 
+                         if(this.edit_id > 0){ 
+                             param.id = this.edit_id 
+                        } 
+                         saveData(param); 
+                         this.getData(); 
+                         this.username = this.form = this.price = ''; 
+                     } 
+                 }, 
+                getData: function(){ 
+                     var self = this; 
+                    searchData(function(){ 
+                         self.dbData = dbData; 
+                     }); 
+                }, 
+                 edit: function(index){ 
+                     this.username = dbData[index].username; 
+                     this.form = dbData[index].form; 
+                     this.price = dbData[index].price; 
+                     this.edit_id = dbData[index].id; 
+                } 
+             } 
+        }) 
+     </script> 
+ </body> 
+ <a href="../web207/goodweb.html">回主頁</a>
+ </html> 
