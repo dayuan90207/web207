@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大元加一加</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body background=bg.jpg>
+
+<h1>大元加一加</h1>
+<form id="orderForm">
+    <label for="name">品名:</label>
+    <input type="text" id="name" required>
+    
+    <label for="additions">附加項目:</label>
+    <input type="text" id="additions">
+    
+    <label for="price">金額:</label>
+    <input type="number" id="price" required>
+    
+    <label for="notes">備註:</label>
+    <textarea id="notes"></textarea>
+    
+    <button type="submit">確定</button>
+</form>
+
+<h2>清單</h2>
+<table id="orderTable">
+    <thead>
+        <tr>
+            <th>品名</th>
+            <th>附加項目</th>
+            <th>金額</th>
+            <th>備註</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<h3>總金額: <span id="totalPrice">0</span> 元</h3>
+<button id="printButton">列印</button>
+
+<script>
+    const form = document.getElementById('orderForm');
+    const orderTable = document.getElementById('orderTable').getElementsByTagName('tbody')[0];
+    const totalPriceElement = document.getElementById('totalPrice');
+    const printButton = document.getElementById('printButton');
+
+    let orders = JSON.parse(localStorage.getItem('orders')) || [];
+
+    function updateOrderTable() {
+        orderTable.innerHTML = '';
+        let total = 0;
+        orders.forEach((order, index) => {
+            const row = orderTable.insertRow();
+            row.insertCell(0).innerText = order.name;
+            row.insertCell(1).innerText = order.additions;
+            row.insertCell(2).innerText = order.price;
+            row.insertCell(3).innerText = order.notes;
+            const deleteCell = row.insertCell(4);
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = '刪除';
+            deleteButton.onclick = () => {
+                orders.splice(index, 1);
+                localStorage.setItem('orders', JSON.stringify(orders));
+                updateOrderTable();
+            };
+            deleteCell.appendChild(deleteButton);
+            total += parseFloat(order.price);
+        });
+        totalPriceElement.innerText = total;
+    }
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const order = {
+            name: document.getElementById('name').value,
+            additions: document.getElementById('additions').value,
+            price: document.getElementById('price').value,
+            notes: document.getElementById('notes').value
+        };
+
+        orders.push(order);
+        localStorage.setItem('orders', JSON.stringify(orders));
+        form.reset();
+        updateOrderTable();
+    });
+
+    printButton.addEventListener('click', function() {
+        window.print();
+    });
+
+    updateOrderTable();
+</script>
+<a href="../web207/goodweb.html">回主頁</a>
+</body>
+</html>

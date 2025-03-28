@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title></title>
+  <script type="text/javascript">
+   window.onload=function(){
+    var oTab=document.getElementById("tab");
+    var oBt=document.getElementsByTagName("input");
+    oBt[1].onclick=function(){
+     for(var i=0;i<oTab.tBodies[0].rows.length;i++)
+     {
+      var str1=oTab.tBodies[0].rows[i].cells[1].innerHTML.toUpperCase();
+      var str2=oBt[0].value.toUpperCase();
+      //使用string.toUpperCase()(将字符串中的字符全部转换成大写)或string.toLowerCase()(将字符串中的字符全部转换成小写)
+      //所谓忽略大小写的搜索就是将用户输入的字符串全部转换大写或小写，然后把信息表中的字符串的全部转换成大写或小写，最后再去比较两者转换后的字符就行了
+      /*******************************JS实现表格忽略大小写搜索*********************************/
+      if(str1==str2){
+       oTab.tBodies[0].rows[i].style.background='red';
+      }
+      else{
+        oTab.tBodies[0].rows[i].style.background='';
+      }
+     
+     if(str1.search(str2)!=-1){oTab.tBodies[0].rows[i].style.background='red';}
+     else{oTab.tBodies[0].rows[i].style.background='';}
+     
+     var arr=str2.split(' ');
+     for(var j=0;j<arr.length;j++)
+     {
+      if(str1.search(arr[j])!=-1){oTab.tBodies[0].rows[i].style.background='red';}
+     }
+     }
+    }
+   }
+  </script>
+ </head>
+ <body background=images.jpg>
+ 品名:<input type="text" />
+  <input type="button" value="搜索"/>
+  <table border="1" bordercolor="blue" id="tab">
+   <thead>
+     <td><h2>ID</h2></td>
+     <td><h2>品名</h2></td>    
+	  <td><h2>價錢</h2></td>
+	   <td><h2>備註</h2></td>
+   </thead>
+   <tbody>
+    <tr>
+     <td>1</td>
+     <td>sony</td>
+	 <td>6500</td>
+     <td>55X9000A</td>	 
+    </tr>
+     <tr>
+     <td>2</td>
+     <td>sony</td>
+	 <td>7500</td>
+     <td>55X8500D</td>  
+	</tr>
+     <tr>
+     <td>3</td>
+     <td>sony</td>
+	 <td>7000</td>
+     <td>KD-49X8300C</td>
+    
+	</tr>
+     <tr>
+     <td>4</td>
+     <td>sony</td>
+     <td>5690</td>
+    <td>SONY INZONE Buds</td>
+	</tr>
+     <tr>
+     <td>5</td>
+     <td>sony</td>
+     <td>999</td>
+    <td>SONY VAIO無線滑鼠</td>
+	</tr>
+	 <tr>
+     <td>6</td>
+     <td>sony</td>
+     <td>499</td>
+    <td>Sony風尚側背包 </td>
+	</tr>
+	 <tr>
+     <td>7</td>
+     <td>sony</td>
+     <td>2780</td>
+    <td>PULSE 3D</td>
+	</tr>
+	 <tr>
+     <td>8</td>
+     <td>sony PS5 </td>
+     <td>2080</td>
+    <td> PS5 DualSense™ 無線控制器</td>
+	</tr>
+	 <tr>
+     <td>9</td>
+     <td>sony PS5</td>
+     <td>17580</td>
+    <td>PS5光碟版主機 -『原神』禮包同捆組</td>
+	</tr>
+	 <tr>
+     <td>10</td>
+     <td>sony ps5</td>
+     <td>10980</td>
+    <td>PS5《跑車浪漫旅 7 Gran Turismo 7》中文版 + Logitech G923 賽車方向盤</td>
+	</tr>
+	<tr>
+     <td>11</td>
+     <td>yamaha</td>
+     <td>75000</td>
+    <td>勁戰6.5(中古)</td>
+	</tr>
+	<tr>
+     <td>12</td>
+     <td>yamaha</td>
+     <td>7650</td>
+    <td>勁戰6.5- TFT全車身犀牛皮防護膜</td>
+	</tr>
+	<tr>
+     <td>13</td>
+     <td>yamaha</td>
+     <td>399</td>
+    <td>勁戰6.5-tft全彩碼表:藍光保護貼(abs)</td>
+	</tr>
+		<tr>
+     <td>14</td>
+     <td>yamaha</td>
+     <td>110000</td>
+    <td>勁戰6.5(abs)</td>
+	</tr>
+	<tr>
+     <td>15</td>
+     <td>sony</td>
+     <td>2500</td>
+    <td>kdl-32v4000(二手)</td>
+	</tr>
+  
+   <tr>
+     <td>16</td>
+     <td>Sony</td>
+     <td>13800</td>
+    <td> 二手VAIO pro13 svp132A1CP(i5-4200u)</td>
+	</tr>
+	   <tr>
+     <td>17</td>
+     <td>Sony</td>
+     <td>9500</td>
+    <td> 二手VAIO VPCL218FW</td>
+	</tr>
+	  <tr>
+     <td>18</td>
+     <td>Sony</td>
+     <td>6500</td>
+    <td> 二手VAIO i7-2640M</td>
+	</tr>
+	  <tr>
+     <td>19</td>
+     <td>Sony</td>
+     <td>8000</td>
+    <td> 二手VAIO Duo 13 i7-4500 SVD13216PW</td>
+	</tr>
+	 </tbody>
+  </table>
+ <a href="../web207/goodweb.html">回主頁</a>
+ </body>
+</html>

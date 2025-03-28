@@ -1,0 +1,73 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <meta charset="utf-8"> 
+  <title>大元圖片</title> 
+<a href="../web207/goodweb.html">回主頁</a>
+  <script src="jquery.min.js"></script> 
+  <link href="control.css" rel="stylesheet" type="text/css" />
+
+</head> 
+<body bgcolor="#ffffff" background="main_title.jpg"> 
+
+  <div class="intro"> 
+    <div class="pic-selector"> 
+     <div class="pic"><img class="cover-size" src="01.gif" /></div> 
+     <ul> 
+      <li class="active"><img class="cover-size" src="01.gif" /></li> 
+      <li><img class="cover-size" src="02.gif" /></li> 
+      <li><img class="cover-size" src="03.gif" /></li> 
+	        <li><img class="cover-size" src="04.gif" /></li> 
+			      <li><img class="cover-size" src="05.gif" /></li> 
+				        <li><img class="cover-size" src="06.gif" /></li> 
+						      <li><img class="cover-size" src="07.gif" /></li> 
+							        <li><img class="cover-size" src="08.gif" /></li> 
+									     <li><img class="cover-size" src="09.gif" /></li> 
+										      <li><img class="cover-size" src="010.gif" /></li> 
+											      
+     </ul> 
+      
+      <ul> 
+	   <li><img class="cover-size" src="011.gif" /></li> 
+      <li class="active"><img class="cover-size" src="012.gif" /></li> 
+      <li><img class="cover-size" src="013.gif" /></li> 
+      <li><img class="cover-size" src="014.gif" /></li> 
+	        <li><img class="cover-size" src="015.gif" /></li> 
+			      <li><img class="cover-size" src="016.gif" /></li> 
+				        <li><img class="cover-size" src="017.gif" /></li> 
+						      <li><img class="cover-size" src="018.gif" /></li> 
+							        <li><img class="cover-size" src="019.gif" /></li> 
+									     <li><img class="cover-size" src="020.gif" /></li> 
+										       												   
+     </ul> 
+
+ <ul> 
+	   <li><img class="cover-size" src="021.gif" /></li> 
+	  <li><img class="cover-size" src="022.gif" /></li>
+      <li><img class="cover-size" src="023.gif" /></li>
+	  <li><img class="cover-size" src="024.gif" /></li> 
+      <li class="active"><img class="cover-size" src="025.gif" /></li> 
+      <li><img class="cover-size" src="026.gif" /></li> 
+      <li><img class="cover-size" src="027.gif" /></li> 
+	  <li><img class="cover-size" src="028.gif" /></li> 
+	  <li><img class="cover-size" src="029.gif" /></li> 
+	  <li><img class="cover-size" src="030.gif" /></li> 
+						    
+									    
+  </ul>      
+     
+    </div> 
+   </div> 
+   <script> 
+    $(function(){ 
+      // pic selector 
+       $('.intro .pic-selector ul li').hover(function () { 
+        $('.intro .pic-selector ul li').removeClass('active'); 
+        $(this).addClass('active'); 
+        $('.intro .pic-selector .pic img').attr('src', $(this).children('img').attr('src')); 
+//       makeImageCoverSize(); 
+       }); 
+    }) 
+   </script> 
+</body> 
+</html>
